@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 
 
-const port = 3030
+const port = process.env.PORT
 const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
