@@ -7,13 +7,15 @@ const app = express()
 app.use(cors())
 
 
-const port = process.env.PORT
-const uri = process.env.MONGO_URI;
+const PORT = process.env.PORT
+const URI = process.env.MONGO_URI;
+const DATABASE = process.env.database
+const COLLECTION = process.env.collection
 
-const client = new MongoClient(uri);
+const client = new MongoClient(URI);
 
 app.get('/', async (req, res) => {
-  let pokemon = await client.db("pokemon_db").collection("pokemon_collection").findOne({"name": req.query.name});
+  let pokemon = await client.db(DATABASE).collection(COLLECTION).findOne({"name": req.query.name});
   if (pokemon == null){
     res.send({error:"No pokemon found"});
     return;
@@ -23,6 +25,6 @@ app.get('/', async (req, res) => {
     types: [pokemon.type1, pokemon.type2]})
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`)
 })
