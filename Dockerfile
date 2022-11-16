@@ -15,4 +15,4 @@ RUN npm install
 # Bundle app source
 
 EXPOSE 3030
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]
