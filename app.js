@@ -20,8 +20,14 @@ app.get('/', async (req, res) => {
     res.send({error:"No pokemon found"});
     return;
   }
-  console.log(pokemon.name)
-  res.send({name: pokemon.name, 
+
+  let pokemon_number = String(pokemon.pokedex_number)
+  while (pokemon_number.length !== 3){
+    pokemon_number = "0"+pokemon_number
+  }
+
+  res.send({name: pokemon.name,
+    number: pokemon_number, 
     types: [pokemon.type1, pokemon.type2]})
 })
 
