@@ -27,7 +27,7 @@ async function get_pokemon(req, res){
 }
   
   
-function fix_pokemon_number(number){
+export function fix_pokemon_number(number){
     number = String(number)
     while (number.length !== 3){
       number = '0'+ number;
@@ -37,7 +37,7 @@ function fix_pokemon_number(number){
 }
 
 
-function fix_types(pokemon){
+export function fix_types(pokemon){
     const types = [pokemon.type1]
     if (pokemon.type2 == "") return types;
     
