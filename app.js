@@ -9,8 +9,8 @@ app.use(cors())
 
 const PORT = process.env.PORT
 const URI = process.env.MONGO_URI;
-const DATABASE = process.env.database
-const COLLECTION = process.env.collection
+const DATABASE = process.env.DATABASE
+const COLLECTION = process.env.COLLECTION
 
 const client = new MongoClient(URI);
 
