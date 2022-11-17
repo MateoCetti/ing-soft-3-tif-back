@@ -10,7 +10,7 @@ const pokemon_numbers = [
     [0, "000"]
 ]
 
-test.each(pokemon_numbers)('Test pokemon endpoint', async (provided_number, expected_number) => {
+test.each(pokemon_numbers)('Test pokemon numbers', async (provided_number, expected_number) => {
     const fixed_number = fix_pokemon_number(provided_number)
     expect(fixed_number).toBe(expected_number);
 });
