@@ -6,7 +6,7 @@ const COLLECTION = process.env.COLLECTION;
 
 export async function mongo_fetch_pokemon(name_or_id) {
   const query = !isNaN(name_or_id)
-    ? { "pokedex_number": Number(name_or_id) }
+    ? { "pokedex_number": name_or_id}
     : { "name": name_or_id };
   return await fetch_pokemon(query);
 }
