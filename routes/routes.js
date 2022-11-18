@@ -7,7 +7,8 @@ const pokemon_router = Router();
 
 async function get_pokemon(req, res){
     const name = req.query.name;
-    const pokemon = await mongo_fetch_pokemon(name);  
+    const number = req.query.number;
+    const pokemon = await mongo_fetch_pokemon(name != undefined ? name : number);  
     if (pokemon == null) {
         res.send({error:"Pokemon not found."});
         return;
