@@ -22,7 +22,12 @@ async function get_pokemon(req, res){
       {
         name: pokemon.name,
         number: pokemon.pokedex_number, 
-        types: pokemon.types
+        types: pokemon.types,
+        weight: pokemon.weight_kg,
+        generation: pokemon.generation,
+        is_legendary: pokemon.is_legendary,
+        japanese_name: pokemon.japanese_name
+
       }
     );
 }
