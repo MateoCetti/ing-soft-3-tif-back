@@ -7,7 +7,9 @@ const pokemon_router = Router();
 async function get_pokemon(req, res) {
   const name = req.query.name;
   const number = req.query.number;
-  const pokemon = await mongo_fetch_pokemon(name != undefined ? fix_name(name) : number);
+  const pokemon = await mongo_fetch_pokemon(
+    name != undefined ? fix_name(name) : number
+  );
   if (pokemon == null) {
     res.send({ error: "Pokemon not found." });
     return;
@@ -15,7 +17,7 @@ async function get_pokemon(req, res) {
 
   // Make pokedex number a three digit string
   pokemon.pokedex_number = fix_pokemon_number(pokemon.pokedex_number);
-  pokemon.types = fix_types(pokemon);
+  pokemon.types = fix_types(pokemon.type1, pokemon.type2);
 
   res.send({
     name: pokemon.name,
@@ -29,6 +31,9 @@ async function get_pokemon(req, res) {
 }
 
 export function fix_name(name) {
+  if (name == undefined || name == null) {
+    return undefined;
+  }
   // converting first letter to uppercase
   const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -36,19 +41,22 @@ export function fix_name(name) {
 }
 
 export function fix_pokemon_number(number) {
-  number = String(number);
-  while (number.length !== 3) {
-    number = "0" + number;
+  if (number == undefined || number == null) {
+    return undefined;
+  }
+  let new_number = String(number);
+  while (new_number.length !== 3) {
+    new_number = "0" + new_number;
   }
 
-  return number;
+  return new_number;
 }
 
-export function fix_types(pokemon) {
-  const types = [pokemon.type1];
-  if (pokemon.type2 == "") return types;
+export function fix_types(type1, type2) {
+  const types = [type1];
+  if (type2 == "") return types;
 
-  types.push(pokemon.type2);
+  types.push(type2);
   return types;
 }
 
