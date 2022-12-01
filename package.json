@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test:coverage": "NODE_OPTIONS=--experimental-vm-modules npx jest --coverage --reporters=jest-junit",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "start": "node server.js"
   },
   "repository": {
