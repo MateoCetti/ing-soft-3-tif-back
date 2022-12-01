@@ -5,9 +5,9 @@ import { mongo_fetch_pokemon } from "../database/mongo.js";
 const pokemon_router = Router();
 
 async function get_pokemon(req, res) {
-  const name = fix_name(req.query.name);
+  const name = req.query.name;
   const number = req.query.number;
-  const pokemon = await mongo_fetch_pokemon(name != undefined ? name : number);
+  const pokemon = await mongo_fetch_pokemon(name != undefined ? fix_name(name) : number);
   if (pokemon == null) {
     res.send({ error: "Pokemon not found." });
     return;
